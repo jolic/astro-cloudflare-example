@@ -1,12 +1,18 @@
-import { defineConfig } from "astro/config";
-import cloudflare from "@astrojs/cloudflare";
+import { defineConfig } from "astro/config"
+import cloudflare from "@astrojs/cloudflare"
 
-import tailwind from "@astrojs/tailwind";
+import tailwind from "@astrojs/tailwind"
 
-import react from "@astrojs/react";
+import react from "@astrojs/react"
+
+import compressor from "astro-compressor"
 
 export default defineConfig({
   output: "server",
   adapter: cloudflare(),
-  integrations: [tailwind(), react()],
+  integrations: [
+    tailwind(),
+    react(),
+    compressor(), // always the last one!
+],
 });
