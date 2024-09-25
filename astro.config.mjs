@@ -7,12 +7,17 @@ import react from "@astrojs/react"
 
 import compressor from "astro-compressor"
 
+import mdx from "@astrojs/mdx";
+
 export default defineConfig({
   output: "server",
   adapter: cloudflare(),
   integrations: [
-    tailwind(),
-    react(),
-    compressor(), // always the last one!
-],
+    tailwind({
+        applyBaseStyles: true,
+    }),
+    compressor(),
+    mdx(),
+    react() // always the last one!
+ ],
 });
