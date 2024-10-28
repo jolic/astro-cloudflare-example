@@ -1,16 +1,16 @@
 ---
 import MainSiteLayout from '@/layouts/MainSiteLayout.astro'
-import Test from '@/components/test/test.tsx'
+// import Test from '@/components/test/test.tsx'
 import { Vortex } from '@/components/ui/vortex'
 import { HeroAnimation } from '@/components/ui/hero-animation'
-import { ImageSlider } from '@/components/ui/image-slider'
+// import { ImageSlider } from '@/components/ui/image-slider'
 
 import { AnimatedBeamDemo2 } from '@/components/ui/animated-beam-demo2'
 import { OrbitingCirclesDemo } from '@/components/ui/orbiting-circles-demo'
 
 import CardFlip from '@/components/ui/CardFlip/CardFlip'
 
-const title = 'This is a title'
+// const title = 'This is a title'
 ---
 
 <MainSiteLayout
@@ -38,10 +38,13 @@ const title = 'This is a title'
 		<OrbitingCirclesDemo client:load/>
 	</div>
 	<div class="relative bg-white sm:py-6 dark:bg-gray-800 flex items-center flex-col justify-center">
-		<CardFlip width={300} height={300} client:load>
-			<div slot="front">A: Front</div>
-			<div slot="back">B: Back</div>
-		</CardFlip>
+		<CardFlip
+			width={300}
+			height={300}
+			front={<div slot="front">A: Front</div>}
+			back={<div slot="back">B: Back</div>}
+			client:load
+		/>
 	</div>
 
 </MainSiteLayout>
