@@ -18,13 +18,14 @@ export async function getStaticPaths() {
   return paths
 }
 
-const { frontmatter } = Astro.props
-console.log('frontmatter', frontmatter)
+// const { frontmatter } = Astro.props
+// console.log('frontmatter', frontmatter)
 
 const allBlogPosts = await getCollection('blog')
 type Props = CollectionEntry<'blog'>
 
-const { lang, slug, page } = Astro.params
+// const { lang, slug, page } = Astro.params
+const { lang, slug } = Astro.params
 // console.log('### slug:', slug, allBlogPosts, page)
 console.log('Astro.params:', Astro.params);
 const enterprisePost = await getEntry('blog', slug)

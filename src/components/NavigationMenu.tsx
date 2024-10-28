@@ -3,8 +3,8 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Image } from 'astro:assets'
-import { Icons } from "@/components/ui/icons"
+// import { Image } from 'astro:assets'
+// import { Icons } from "@/components/ui/icons"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,7 +14,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import IconTalent from '@/assets/talent.png'
+// import IconTalent from '@/assets/talent.png'
 
 const listItemClassName = {
   className: "text-xl font-normal cursor-pointer dark:text-white dark:bg-transparent dark:hover:text-[#2463ea]"

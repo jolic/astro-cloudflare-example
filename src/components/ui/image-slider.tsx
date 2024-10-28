@@ -1,4 +1,4 @@
-import { useState } from "react"
+// import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import womanInBureau from '@/assets/skill-backgrounds/woman-in-bureau.png'
 import bauleiterin from '@/assets/skill-backgrounds/bauleiterin.png'
@@ -19,7 +19,7 @@ export const ImageSlider = ({ item = 0 }) => {
       <AnimatePresence initial={false}>
         <motion.img
           className="img"
-          src={images[0]}
+          src={images[0].src}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

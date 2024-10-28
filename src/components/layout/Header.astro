@@ -6,14 +6,14 @@ import DarkMode from '@/components/DarkMode'
 import { LanguageDropdown } from '@/components/ui/language-dropdown'
 import { Button } from "@/components/ui/button"
 import { Icons } from '@/components/ui/icons'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuLabel,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu"
 
 import { Image } from 'astro:assets'
 import SkilltiesLogo from '@/assets/skillties-logo.webp'
@@ -30,7 +30,7 @@ import SkilltiesWhiteLogo from '@/assets/skillties-logo-white.webp'
 
                 <div class="relative inline-block text-left">
 
-                    <LanguageDropdown client:load/>
+                    <LanguageDropdown config={{}} client:load/>
 
                 </div>
                 <div class="mr-10">
