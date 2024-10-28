@@ -236,8 +236,13 @@ export const Vortex = (props: VortexProps) => {
     })
   }, [])
 
+//   <div className={cn('relative h-full w-full', props.containerClassName)}> */}
+//     <div className={cn('relative z-10', props.className)}>
+//         {props.children}
+//     </div>
+//   </div>
+
   return (
-    <div className={cn('relative h-full w-full', props.containerClassName)}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -245,10 +250,5 @@ export const Vortex = (props: VortexProps) => {
         className='absolute h-full w-full inset-0 z-0 bg-transparent flex items-center justify-center'>
         <canvas ref={canvasRef}></canvas>
       </motion.div>
-
-      <div className={cn('relative z-10', props.className)}>
-        {props.children}
-      </div>
-    </div>
   )
 }

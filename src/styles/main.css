@@ -3,3 +3,32 @@ body {
     /* display: flex;
     flex-direction: column; */
 }
+
+@keyframes smoothBg {
+    from {
+      background-position: 50% 50%, 50% 50%;
+    }
+    to {
+      background-position: 350% 50%, 350% 50%;
+    }
+}
+
+.hero {
+    /* background: linear-gradient(-45deg, #000, #114, #000, #410); */
+    /* background-size: 400% 400%; */
+    /* animation: gradient 35s ease infinite; */
+    /* height: 70vh; */
+}
+    
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+    

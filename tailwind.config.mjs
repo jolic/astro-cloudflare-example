@@ -1,9 +1,19 @@
 /** @type {import('tailwindcss').Config} */
+const {
+	default: flattenColorPalette,
+  } = require("tailwindcss/lib/util/flattenColorPalette")
+const plugin = require('tailwindcss/plugin')
+
 export default {
     darkMode: ['class'],
     content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
     	extend: {
+    		textShadow: {
+    			sm: '0 1px 2px var(--tw-shadow-color)',
+    			DEFAULT: '4px 4px 4px var(--tw-shadow-color)',
+    			lg: '0 8px 16px var(--tw-shadow-color)'
+    		},
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
@@ -50,8 +60,49 @@ export default {
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
     			}
+    		},
+    		animation: {
+    			orbit: 'orbit calc(var(--duration)*1s) linear infinite'
+    		},
+    		keyframes: {
+    			orbit: {
+    				'0%': {
+    					transform: 'rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)'
+    				},
+    				'100%': {
+    					transform: 'rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)'
+    				}
+    			}
     		}
     	}
     },
-	plugins: [require("tailwindcss-animate")],
+	darkMode: "class",
+	plugins: [
+		plugin(function ({ matchUtilities, theme }) {
+			matchUtilities(
+			  {
+				'text-shadow': (value) => ({
+				  textShadow: value,
+				}),
+			  },
+			  { values: theme('textShadow') }
+			)
+		}),
+		addVariablesForColors,	
+		require('tailwindcss-multiple-columns'),
+		require('@tailwindcss/forms'), 
+		require("tailwindcss-animate"),
+	],
 }
+
+// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
+function addVariablesForColors({ addBase, theme }: any) {
+	let allColors = flattenColorPalette(theme("colors"));
+	let newVars = Object.fromEntries(
+	  Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+	);
+   
+	addBase({
+	  ":root": newVars,
+	});
+  }
