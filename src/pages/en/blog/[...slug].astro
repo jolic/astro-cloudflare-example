@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection, getEntry } from 'astro:content'
 import BlogLayout from '@/layouts/BlogLayout.astro'
 
 // export const prerender = true
+export const prerender = true
 
 export async function getStaticPaths() {
   const pages = await getCollection('blog')
