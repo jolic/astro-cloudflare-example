@@ -1,0 +1,40 @@
+---
+import BaseHead from '@/components/layout/BaseHead.astro'
+import Footer from '@/components/layout/BaseFooter.astro'
+import Header from '@/components/layout/Header.astro'
+
+import { getCollection } from 'astro:content';
+import FormattedDate from '@/components/FormattedDate.astro';
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props
+console.log('------------------- title');
+console.log(title, description);
+console.log('-------------------');
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+console.log('## POSTS:', posts);
+
+import { languages } from '@/lib/utils'
+
+const { language, langSwitch } = Astro.props
+
+console.log('-------------------');
+console.log(language, langSwitch);
+console.log('-------------------');
+
+console.log('Astro.site:', Astro.locals);
+---
+<html lang={Astro.currentLocale}>
+  <head>
+    <BaseHead description="Test description" title={title}/>
+  </head>
+  <body>
+    <Header />
+    <main class="pt-20">
+        <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

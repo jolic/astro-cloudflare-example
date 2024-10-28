@@ -1,0 +1,88 @@
+---
+import { type CollectionEntry, getCollection, getEntry } from 'astro:content'
+import BlogLayout from '@/layouts/BlogLayout.astro'
+
+// export const prerender = true
+export const prerender = true
+
+export async function getStaticPaths() {
+  const pages = await getCollection('blog')
+
+  const paths = pages.map(page => {
+    const [lang, ...slug] = page.slug.split('/')
+    console.log('---lang: ', lang, '... slug:', slug)
+    
+    // return { params: { lang, slug: slug.join('/') || undefined }, props: page }
+    return { params: { lang, slug: page.slug || undefined }, props: page }
+  })
+
+  return paths
+}
+
+// const { frontmatter } = Astro.props
+// console.log('frontmatter', frontmatter)
+
+const allBlogPosts = await getCollection('blog')
+type Props = CollectionEntry<'blog'>
+
+// const { lang, slug, page } = Astro.params
+const { lang, slug } = Astro.params
+// console.log('### slug:', slug, allBlogPosts, page)
+console.log('Astro.params:', Astro.params);
+const enterprisePost = await getEntry('blog', slug)
+console.log('enterprisePost', enterprisePost);
+
+// console.log(allBlogPosts[0])
+
+console.log('slug:', slug, lang);
+
+const foundPost = allBlogPosts.find((page) => page.slug === slug)
+console.log('foundPost:', foundPost);
+
+// if (!post) {
+//   return Astro.redirect('/404')
+// }
+// const { Content } = await post.render();
+const { Content } = await allBlogPosts[0].render();
+
+
+// type Props = CollectionEntry<'blog'>
+
+// const post = Astro.props;
+// const { Content } = await post.render()
+
+// const { entry } = Astro.props;
+// console.log(entry);
+
+// const { Content } = await entry.render();
+---
+<!-- <h1>{entry.data.title}</h1> -->
+<!-- <Content /> -->
+<!-- <h1>{frontmatter.title}</h1>
+<p>{frontmatter.pubDate.toISOString().slice(0,10)}</p> -->
+<!-- <BlogPost {...post.data}> -->
+<BlogLayout
+  description="Lorem ipsum dolor sit amet"
+  pubDate={new Date('August 08 2021')}
+  heroImage="/blog-placeholder-about.jpg"
+  title="This is a title"
+>
+  <h1>BLOG EN</h1>
+	<Content />
+  <div class="col-count-3 col-rule-dotted col-gap-8">
+    <h1 class="col-span-all text-center">Full width title</h1>
+    <p>
+      These paragraphs will automatically be arranged to three vertical columns and the text will flow
+      from one column to the next one without any extra work.
+    </p>
+    <p>
+      You can change the spacing of the columns and you can also add a line between the columns which
+      is called a "column-rule".
+    </p>
+    <p>
+      The individual elements can also span across multiple columns if you want a header to span all
+      the columns for example.
+    </p>
+  </div>
+</BlogLayout>
+<!-- </BlogPost> -->
