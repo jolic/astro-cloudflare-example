@@ -14,12 +14,23 @@ const spring = {
 }
 
 
-const CardFlip = ({width = 300, height = 300, front, back}) => {
+const CardFlip = ({width = 300, height = 300, }) => {
   const [isFlipped, setIsFlipped] = useState(false)
 
   // console.log('children', children);
   // console.log(children.length);
   
+  const front = () => {
+    return (
+        <div>A: Front</div>
+    )
+  }
+
+  const back = () => {
+    return (
+        <div>B: Back</div>
+    )
+  }
 
   const handleClick = () => {
       setIsFlipped((prevState) => !prevState)
@@ -107,7 +118,7 @@ const CardFlip = ({width = 300, height = 300, front, back}) => {
                       }}
                   >
                       <div className="relative w-full h-full bg-red-500 rounded-lg">
-                        {front}
+                        {front()}
                       </div>
                   </motion.div>
                   <motion.div
@@ -123,7 +134,7 @@ const CardFlip = ({width = 300, height = 300, front, back}) => {
                       }}
                   >
                       <div className="relative w-full h-full bg-green-500 rounded-lg">
-                        {back}
+                        {back()}
                       </div>
                   </motion.div>
               </div>
